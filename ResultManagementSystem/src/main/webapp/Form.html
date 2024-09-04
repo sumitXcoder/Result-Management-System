@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <title>Anurag University Results</title>
+    <style>
+        h1 {
+            text-align: center;
+            margin-top: .5em;
+            color: #555;
+        }
+
+        form {
+            width: min(90%, 400px);
+            height: max-content;
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            padding: 1em;
+            row-gap: 1em;
+            box-sizing: border-box;
+        }
+
+        input {
+            height: 50px;
+            font-size: 1.2em;
+            border: 1px solid #bbb;
+            border-radius: 10px;
+            padding: .5em;
+            width: 100%;
+        }
+
+        input:nth-of-type(1) {
+            text-transform: uppercase;
+        }
+
+        input:focus {
+            outline: 1px solid gray;
+        }
+
+        label {
+            color: #aaa;
+        }
+
+        * {
+            font-family: sans-serif;
+        }
+
+        input[type="submit"] {
+            background-color: rgb(84, 84, 246);
+            color: white;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            margin-block: .5em;
+        }
+
+
+        label:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+            column-gap: .5em;
+            padding-left: 2px;
+        }
+
+        input.all-sem {
+            width: min-content;
+            transform: scaleX(1.5) scaleY(1.5);
+        }
+
+        .first-label-div,
+        .third-label-div {
+            margin-bottom: .75em;
+        }
+        
+        img{
+        	height:50px;
+        	transform:translateY(10px);
+        }
+    </style>
+</head>
+
+<body>
+    <form action="./Result" method="POST">
+        <h1>
+            <img src="au.png" /> Anurag University
+        </h1>
+        <label>
+            <div class="first-label-div">Hall ticket number *</div>
+            <input type="text" name="rollno" required><br>
+        </label>
+        <label>
+            <input type="checkbox" class="all-sem" name="all-sem" value="all">
+            <div>
+                Get all semesters *
+            </div>
+        </label>
+        <label>
+            <div class="third-label-div">Select Semester *</div>
+            <input type="number" name="sem" min="1" max="5">
+        </label>
+        <input type="submit" value="GET RESULT">
+    </form>
+</body>
+<script>
+    const checkbox = document.querySelector(".all-sem")
+    const sem = document.querySelector("label:nth-of-type(3)")
+    checkbox.onchange = () => {
+    	sem.style.display = checkbox.checked ? "none" : "block"
+    	if (checkbox.checked) 
+			sem.children[1].removeAttribute("required")
+		else
+			sem.children[1].addAttribute("required");
+    }
+</script>
+
+</html>
